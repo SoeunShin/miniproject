@@ -41,6 +41,48 @@ int selectMenu(){
     return menu;
 }
 
+// 파일에 저장하기
+void saveFile(Product *p, int cnt){
+    FILE *fp;
+    fp = fopen("product.txt", "wt");
+    for(int i=0; i<cnt; i++){
+        if(p[i].price == -1) continue;
+        fprintf(fp, "%s\t%d\t%d\t%d\t%d\n", p[i].name, p[i].weight, p[i].price, p[i].score, p[i].s_cnt);
+    }
+    fclose(fp);
+    printf("저장됨!\n");
+}
+
+// 파일 줄 세기
+int fileLine(){
+        FILE *fp;
+        char ch;
+        int linenum=0;
+        fp=fopen("product.txt", "r");
+        while((ch=fgetc(fp)) != EOF)
+                if (ch == '\n')
+                        linenum++;
+        fclose(fp);
+        return linenum;
+}
+
+// 파일내용 불러오기
+int loadData(Product *p){
+        int i=0;
+        FILE *fp = fopen("product.txt", "rt");
+        int line = fileLine();
+        for(; i<line; i++){
+                if(feof(fp)) break;
+                fscanf(fp, "%s", p[i].name);
+                fscanf(fp, "%d", &p[i].weight);
+                fscanf(fp, "%d", &p[i].price);
+                fscanf(fp, "%d", &p[i].score);
+                fscanf(fp, "%d", &p[i].s_cnt);
+        }
+        fclose(fp);
+        return i;
+}
+
 // 상품명 검색
 void searchName(Product *p, int cnt){
     int pcnt = 0;
