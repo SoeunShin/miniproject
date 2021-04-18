@@ -49,11 +49,17 @@ int main(void){
                 continue;
             }
         }
-        else if(menu == 5){
-            searchName(plist, index);
+	else if(menu == 5){
+                saveFile(plist, index);
         }
         else if(menu == 6){
-            searchScore(plist, index);
+                searchName(plist, index);
+        }
+        else if(menu == 7){
+                searchScore(plist, index);
+        }
+        else if(menu == 8){
+                searchPrice(plist, index);
         }
     }
     printf("종료됨!\n");
