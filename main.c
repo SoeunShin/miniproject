@@ -6,6 +6,18 @@ int main(void){
     int index = 0;
     int count = 0, menu;
  
+    FILE *fp;
+        fp = fopen("product.txt", "rt");
+
+        if (fp == NULL){
+                printf("\n=> 파일 없음\n");
+        }
+        else {
+                printf("\n=> 로딩 성공!\n");
+                count = loadData(plist);
+                index = count;
+        }
+
     while (1){
         menu = selectMenu();
         if (menu == 0) break;
