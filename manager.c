@@ -126,3 +126,25 @@ void searchScore(Product *p, int cnt){
     if(pcnt==0)
         printf("=> 검색된 데이터 없음!\n");
 }
+
+// 가격 검색
+void searchPrice(Product *p, int cnt){
+        int pcnt = 0;
+        int pprice;
+
+        printf("검색할 가격? ");
+        scanf("%d", &pprice);
+
+        printf("No\t제품명\t\t\t\t\t   중량      판매가격  별점\t 별점개수\n");
+        printf("========================================================================================\n");
+        for(int i=0; i<cnt; i++){
+                if(p[i].price == -1) continue;
+                if(p[i].price == pprice){
+                        printf("%d", i+1);
+                        readProduct(p[i]);
+                        pcnt++;
+                }
+        }
+        if(pcnt==0)
+                printf("=> 검색된 데이터 없음!\n");
+}
